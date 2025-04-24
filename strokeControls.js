@@ -43,9 +43,9 @@ $(document).ready(function () {
     });*/
 
     //$("#txtAge").focus().select();
-    /*setTimeout(function () {
+    setTimeout(function () {
         $("#txtAge").focus().select();
-    }, 100);*/
+    }, 100);
     loadAvgArray().then(() => {
         // Now avgLabs is ready to use
         console.log(avgLabs["malewhite1"].measure[measureEnum.AVGSYS]);
