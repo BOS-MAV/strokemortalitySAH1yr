@@ -62,9 +62,9 @@ $(document).ready(function () {
     $("#statinMark").tooltip({title: "Please choose either yes or no",placement:"bottom", trigger:"manual"});
     $("#priorKidMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
     $("#priorHFMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
-    $("#BP_Sys").tooltip({title: "Please enter a systolic blood pressure between 80 and 300 mm HG, m or M if you do not have a value", placement: "right", trigger: "manual"});
-    $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG, m or M if you do not have a value", placement: "right", trigger: "manual"});
-    $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
+    $("#BP_Sys").tooltip({title: "Please enter a systolic blood pressure between 80 and 300 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
+    $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
+    $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#creat").tooltip({title: "Please enter creatinine level between 0.59 and 1.39 mg/dL, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
 
@@ -103,7 +103,7 @@ $(document).ready(function () {
                     else
                     {
                         $("#raceMark").tooltip("hide");
-                        if (($("input[name = 'Ethnicity']:checked").val() !== 'Yes') && ($("input[name = 'Diabetes']:checked").val() != 'No'))
+                        if (($("input[name = 'Ethnicity']:checked").val() !== 'Yes') && ($("input[name = 'Ethnicity']:checked").val() != 'No'))
                             {
                                $("#ethnMark").tooltip("show");
                                $("#ethn").focus();
@@ -198,22 +198,22 @@ $(document).ready(function () {
                                                                 totCholToolTipOn = 1;
                                                                 if (!(HDL_Val()))
                                                                 {
-                                                                    $("#HDL").tooltip("show");
-                                                                    $("#HDL").focus();
+                                                                    $("#creat").tooltip("show");
+                                                                    $("#creat").focus().select();
                                                                 }
                                                             else
                                                             {
-                                                                $("#HDL").tooltip("hide");
-                                                                HDLToolTipOn  = 1;
-                                                                if (!(LDL_Val()))
+                                                                $("#creat").tooltip("hide");
+                                                                creatToolTipOn  = 1;
+                                                                if (!(BMI_Val()))
                                                                 {       
-                                                                    $("#LDL").tooltip("show");
-                                                                    $("#LDL").focus();
+                                                                    $("#BMI").tooltip("show");
+                                                                    $("#BMI").focus().select();
                                                                 }
                                                                 else
                                                                 {
-                                                                    $("#LDL").tooltip("hide");
-                                                                    LDLToolTipOn =1;
+                                                                    $("#BMIL").tooltip("hide");
+                                                                    BMIToolTipOn =1;
                                                                 }
                                                             }                                                }
                                                         }
@@ -267,7 +267,7 @@ $("#TotChol").blur(function () {
 $("#creat").blur(function () {
     if (creat_Val())
     {
-        creatToolTipOn = 1;;
+        creatToolTipOn = 1;
     }
 });
 
@@ -310,7 +310,7 @@ $("#BMI").blur(function () {
             $("#raceMark1").removeClass("btn-selected");
             $("#raceMark2").removeClass("btn-selected");
         }
-        else if ($("input[name='Race']:checked").val()==="AfrAm")
+        else if ($("input[name='Race']:checked").val()==="Black")
         {
             
             $("#raceMark1").addClass("btn-selected");
@@ -480,10 +480,10 @@ $("#BMI").blur(function () {
              $("#priorHFYGlyph").hide();
              $("#priorHFMark").removeClass("btn-selected");
          }
-        $("#BP_Sys").focus();
-        setTimeout(function() {
+        $("#BP_Sys").focus().select();
+        /*setTimeout(function() {
             $('#BP_Sys').focus().select();
-        }, 100);
+        }, 100);*/
   
      });
     $("#BP_Sys").blur(function () {
@@ -721,7 +721,7 @@ function creat_Val() {
             $("#creat").removeClass("invalid").addClass("valid");
             $("#myForm input").prop("disabled",false);
             $("#myForm button").prop("disabled",false);
-            $("#BMI").focus();
+            $("#BMI").focus().select();
             return true;
         }
     }
