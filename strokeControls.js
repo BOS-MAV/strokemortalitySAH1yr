@@ -85,7 +85,7 @@ $(document).ready(function () {
             if (txtAge_Val())
             {
                 txtAgeToolTipOn = 1;
-                $("#txtAge").tooltip("hide");
+                //$("#txtAge").tooltip("hide");
                 if (($("input[name = 'Sex']:checked").val() !== 'Male') && ($("input[name = 'Sex']:checked").val() !== 'Female'))
                 {
                     $("#sexMark").tooltip("show");
@@ -93,7 +93,7 @@ $(document).ready(function () {
                 }
                 else
                 {
-                    $("#sexMark").tooltip("hide");
+                   // $("#sexMark").tooltip("hide");
                     if (($("input[name = 'Race']:checked").val() != 'White') && ($("input[name = 'Race']:checked").val() != 'AfrAm')
                             && ($("input[name = 'Race']:checked").val() != 'Hisp') && ($("input[name = 'Race']:checked").val() != 'Other'))
                     {
