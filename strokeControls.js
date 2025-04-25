@@ -88,7 +88,7 @@ $(document).ready(function () {
                 $("#txtAge").tooltip("hide");
                 if (($("input[name = 'Sex']:checked").val() !== 'Male') && ($("input[name = 'Sex']:checked").val() !== 'Female'))
                 {
-                    //$("#sexMark").tooltip("show");
+                    $("#sexMark").tooltip("show");
                     $("#sex").focus();
                 }
                 else
@@ -97,7 +97,7 @@ $(document).ready(function () {
                     if (($("input[name = 'Race']:checked").val() != 'White') && ($("input[name = 'Race']:checked").val() != 'AfrAm')
                             && ($("input[name = 'Race']:checked").val() != 'Hisp') && ($("input[name = 'Race']:checked").val() != 'Other'))
                     {
-                      //  $("#raceMark").tooltip("show");
+                        $("#raceMark").tooltip("show");
                         $("#race").focus();
                     }
                     else
@@ -105,39 +105,39 @@ $(document).ready(function () {
                         $("#raceMark").tooltip("hide");
                         if (($("input[name = 'Ethnicity']:checked").val() !== 'Yes') && ($("input[name = 'Diabetes']:checked").val() != 'No'))
                             {
-                        //        $("#ethnMark").tooltip("show");
-                                $("#ethn").focus();
+                               $("#ethnMark").tooltip("show");
+                               $("#ethn").focus();
                             }
                         else
                             {
                                 $("#ethnMark").tooltip("hide");
                                 if (($("input[name = 'Diabetes']:checked").val() !== 'Yes') && ($("input[name = 'Diabetes']:checked").val() != 'No'))
                                 {
-                          //           $("#diabMark").tooltip("show");
+                                     $("#diabMark").tooltip("show");
                                      $("#diab").focus();
                                 }
                                 else
                                 {
-                            //        $("#diabMark").tooltip("hide");
+                                    $("#diabMark").tooltip("hide");
                                     if (($("input[name = 'dementia']:checked").val() !== 'Yes') && ($("input[name = 'dementia']:checked").val() !== 'No'))
                                     {
-                              //          $("#dementiaMark").tooltip("show");
+                                        $("#dementiaMark").tooltip("show");
                                         $("#dementia").focus();
                                     }
                                     else
                                     {
-                                //        $("#dementiaMark").tooltip("hide");
+                                       $("#dementiaMark").tooltip("hide");
                                         if (($("input[name = 'Hypertension']:checked").val() !== 'Yes') && ($("input[name = 'Hypertension']:checked").val() !== 'No'))
                                         {
-                                  //          $("#hyperMark").tooltip("show");
+                                        $("#hyperMark").tooltip("show");
                                             $("#hbp").focus();
                                         }
                                         else
                                         {
-                                    //        $("#hyperMark").tooltip("hide");
+                                            $("#hyperMark").tooltip("hide");
                                             if (($("input[name = 'Statin']:checked").val() !== 'Yes') && ($("input[name = 'Statin']:checked").val() !== 'No'))
                                             {
-                                      //          $("#statinMark").tooltip("show");
+                                                $("#statinMark").tooltip("show");
                                                 $("#Statin").focus();
                                             }
                                             else
@@ -145,25 +145,25 @@ $(document).ready(function () {
                                                 $("#statinMark").tooltip("hide");
                                                 if (($("input[name= 'afib']:checked").val() !== 'Yes') && ($("input[name= 'afib']:checked").val() !== 'No'))
                                                 {
-                                        //            $("#afibMark").tooltip("show");
+                                                    $("#afibMark").tooltip("show");
                                                     $("#afib").focus();
                                                 }
                                                 else
                                                 {
-                                          //          $("#afibMark").tooltip("hide");                                          
+                                                    $("#afibMark").tooltip("hide");                                          
                                                         
                                                     if (($("input[name= 'priorKid']:checked").val() !== 'Yes') && ($("input[name= 'priorKid']:checked").val() !== 'No'))
                                                     {
-                                            //            $("#priorKid").tooltip("show");
+                                                        $("#priorKid").tooltip("show");
                                                         $("#priorKid").focus();
                                                           
                                                     }
                                                     else
                                                     {
-                                              //          $("priorKid").tooltip("hide");
+                                                        $("priorKid").tooltip("hide");
                                                         if (($("input[name= 'priorHF']:checked").val() !== 'Yes') && ($("input[name= 'priorHF']:checked").val() !== 'No'))
                                                         {
-                                                //            $("#priorHF").tooltip("show");
+                                                            $("#priorHF").tooltip("show");
                                                             $("#priorHF").focus();
                                                               
                                                         }
@@ -171,48 +171,48 @@ $(document).ready(function () {
                                                     else
                                                         if (!(bpSys_Val()))
                                                         {
-                                                  //          $("#bpSys").tooltip("show");
+                                                            $("#bpSys").tooltip("show");
                                                             $("#bpSys").focus();
                                                         }
                                                     else
                                                     {
-                                                    //    $("#bpSys").tooltip("hide");
+                                                        $("#bpSys").tooltip("hide");
                                                         bpSysToolTipOn = 1;
                                                         if (!(bpDia_Val()))
                                                         {
-                                                      //      $("#bpDia").tooltip("show");
+                                                            $("#bpDia").tooltip("show");
                                                             $("#bpDia").focus();
                                                         }
                                                         else
                                                         {
-                                                        //    $("#bpDia").tooltip("hide");
+                                                            $("#bpDia").tooltip("hide");
                                                             bpDiaToolTipOn = 1;
                                                             if (!(totChol_Val()))
                                                                 {
-                                                          //      $("#totChol").tooltip("show");
+                                                                $("#totChol").tooltip("show");
                                                                 $("#totChol").focus();
                                                                 }
                                                             else
                                                             {
-                                                            //    $("#totChol").tooltip("hide");
+                                                                $("#totChol").tooltip("hide");
                                                                 totCholToolTipOn = 1;
                                                                 if (!(HDL_Val()))
                                                                 {
-                                                              //      $("#HDL").tooltip("show");
+                                                                    $("#HDL").tooltip("show");
                                                                     $("#HDL").focus();
                                                                 }
                                                             else
                                                             {
-                                                                //$("#HDL").tooltip("hide");
+                                                                $("#HDL").tooltip("hide");
                                                                 HDLToolTipOn  = 1;
                                                                 if (!(LDL_Val()))
                                                                 {       
-                                                                  //  $("#LDL").tooltip("show");
+                                                                    $("#LDL").tooltip("show");
                                                                     $("#LDL").focus();
                                                                 }
                                                                 else
                                                                 {
-                                                                    //$("#LDL").tooltip("hide");
+                                                                    $("#LDL").tooltip("hide");
                                                                     LDLToolTipOn =1;
                                                                 }
                                                             }                                                }
@@ -280,7 +280,7 @@ $("#BMI").blur(function () {
 
 
     $("input[name='Sex']").change(function () {
-        //$("#sexMark").tooltip("hide");
+        $("#sexMark").tooltip("hide");
         if ($("input[name='Sex']:checked").val()==="Male")
         {
             $("#sexMark").addClass("btn-selected");
@@ -300,7 +300,7 @@ $("#BMI").blur(function () {
     });
 
     $("input[name='Race']").change(function () {
-        //$("#raceMark").tooltip("hide");
+        $("#raceMark").tooltip("hide");
         if ($("input[name='Race']:checked").val()==="White")
         {
             $("#raceMark").addClass("btn-selected");
@@ -332,7 +332,7 @@ $("#BMI").blur(function () {
         }
     });
         $("input[name='Ethnicity']").change(function () {
-          //  $("#ethnMark").tooltip("hide");
+            $("#ethnMark").tooltip("hide");
             if ($("input[name='Ethnicity']:checked").val()==="nhisp")
             {
                 $("#ethnMark").addClass("btn-selected");
@@ -350,7 +350,7 @@ $("#BMI").blur(function () {
         $("#Diabetes").focus();
     });
     $("input[name='Diabetes']").change(function () {
-        //$("#diabMark").tooltip("hide");
+        $("#diabMark").tooltip("hide");
         if ($("input[name='Diabetes']:checked").val()==="Yes")
         {
             $("#diabMark").addClass("btn-selected");
@@ -369,7 +369,7 @@ $("#BMI").blur(function () {
         $("#dementia").focus();
     });
     $("input[name='Dementia']").change(function () {
-       //$("#dementMark").tooltip("hide");
+       $("#dementMark").tooltip("hide");
        if ($("input[name='Dementia']:checked").val()==="Yes")
         {
             $("#dementMark").addClass("btn-selected");
@@ -388,7 +388,7 @@ $("#BMI").blur(function () {
        $("#hbp").focus();
     });
     $("input[name='Hypertension']").change(function (){
-       //$("#hyperMark").tooltip("hide");
+       $("#hyperMark").tooltip("hide");
        if ($("input[name='Hypertension']:checked").val()==="Yes")
         {
             $("#hyperMark").addClass("btn-selected");
@@ -407,7 +407,7 @@ $("#BMI").blur(function () {
        $("Statin").focus();
     });
     $("input[name='Statin']").change(function () {
-       //$("#statinMark").tooltip("hide");
+       $("#statinMark").tooltip("hide");
        if ($("input[name='Statin']:checked").val()==="Yes")
         {
             $("#statinMark").addClass("btn-selected");
@@ -426,7 +426,7 @@ $("#BMI").blur(function () {
        $("#afib").focus();
     });
     $("input[name='afib']").change(function () {
-        //$("#afibMark").tooltip("hide");
+        $("#afibMark").tooltip("hide");
         if ($("input[name='afib']:checked").val()==="Yes")
          {
              $("#afibMark").addClass("btn-selected");
@@ -445,7 +445,7 @@ $("#BMI").blur(function () {
         $("#priorKid").focus();
      });
      $("input[name='priorKid']").change(function () {
-        //$("#priorKidMark").tooltip("hide");
+        $("#priorKidMark").tooltip("hide");
         if ($("input[name='priorKid']:checked").val()==="Yes")
          {
              $("#priorKidMark").addClass("btn-selected");
@@ -464,7 +464,7 @@ $("#BMI").blur(function () {
         $("#priorHF").focus();
      });
      $("input[name='priorHF']").change(function () {
-        //$("#priorHFMark").tooltip("hide");
+        $("#priorHFMark").tooltip("hide");
         if ($("input[name='priorHF']:checked").val()==="Yes")
          {
              $("#priorHFMark").addClass("btn-selected");
@@ -480,7 +480,7 @@ $("#BMI").blur(function () {
              $("#priorHFYGlyph").hide();
              $("#priorHFMark").removeClass("btn-selected");
          }
-        //$("#BP_Sys").focus();
+        $("#BP_Sys").focus();
         setTimeout(function() {
             $('#BP_Sys').focus().select();
         }, 100);
@@ -546,7 +546,7 @@ function txtAge_Val() {
         {
             if (txtAgeToolTipOn===1)
             {
-                //$("#txtAge").tooltip("show");
+                $("#txtAge").tooltip("show");
                 input.removeClass("valid").addClass("invalid");
                 $("#myForm input").prop("disabled",true);
                 $("#myForm button").prop("disabled",true);
@@ -558,7 +558,7 @@ function txtAge_Val() {
         }
         else
         {
-            //$("#txtAge").tooltip("hide");
+            $("#txtAge").tooltip("hide");
             input.removeClass("invalid").addClass("valid");
             $("#myForm input").prop("disabled",false);
             $("#myForm button").prop("disabled",false);
@@ -573,7 +573,7 @@ function txtHosp_Val() {
     {
         if (txtHospToolTipOn===1)
         {
-//            $("#txtHosp").tooltip("show");
+            $("#txtHosp").tooltip("show");
             input.removeClass("valid").addClass("invalid");
             $("#myForm input").prop("disabled",true);
             $("#myForm button").prop("disabled",true);
@@ -585,7 +585,7 @@ function txtHosp_Val() {
     }
     else
     {
-  //      $("#txtHosp").tooltip("hide");
+        $("#txtHosp").tooltip("hide");
         input.removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
@@ -601,7 +601,7 @@ function bpSys_Val() {
 
         if (bpSysToolTipOn ===1)
         {
-    //        $("#BP_Sys").tooltip("show");
+            $("#BP_Sys").tooltip("show");
             $("#BP_Sys").removeClass("valid").addClass("invalid");
             $("#myForm input").prop("disabled",true);
             $("#myForm button").prop("disabled",true);
@@ -613,7 +613,7 @@ function bpSys_Val() {
     }
     else
     {
-      //  $("#BP_Sys").tooltip("hide");
+        $("#BP_Sys").tooltip("hide");
         $("#BP_Sys").removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
@@ -630,7 +630,7 @@ function bpDia_Val() {
 
         if (bpDiaToolTipOn ===1)
         {
-        //    $("#BP_Dia").tooltip("show");
+            $("#BP_Dia").tooltip("show");
             $("#BP_Dia").removeClass("valid").addClass("invalid");
             $("#myForm input").prop("disabled",true);
             $("#myForm button").prop("disabled",true);
@@ -642,7 +642,7 @@ function bpDia_Val() {
     }
     else
     {
-    //    $("#BP_Dia").tooltip("hide");
+        $("#BP_Dia").tooltip("hide");
         $("#BP_Dia").removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
@@ -659,7 +659,7 @@ function totChol_Val() {
 
         if (totCholToolTipOn === 1)
         {
-      //      $("#TotChol").tooltip("show");
+            $("#TotChol").tooltip("show");
             $("#TotChol").removeClass("valid").addClass("invalid");
             $("#myForm input").prop("disabled",true);
             $("#myForm button").prop("disabled",true);
@@ -671,7 +671,7 @@ function totChol_Val() {
     }
     else
     {
-        //$("#TotChol").tooltip("hide");
+        $("#TotChol").tooltip("hide");
         $("#TotChol").removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
@@ -705,7 +705,7 @@ function creat_Val() {
 
             if (creatToolTipOn === 1)
             {
-                //$("#creat").tooltip("show");
+                $("#creat").tooltip("show");
                 $("#creat").removeClass("valid").addClass("invalid");
                 $("#myForm input").prop("disabled",true);
                 $("#myForm button").prop("disabled",true);
@@ -717,7 +717,7 @@ function creat_Val() {
         }
         else    
         {
-            //$("#creat").tooltip("hide");
+            $("#creat").tooltip("hide");
             $("#creat").removeClass("invalid").addClass("valid");
             $("#myForm input").prop("disabled",false);
             $("#myForm button").prop("disabled",false);
@@ -734,7 +734,7 @@ function BMI_Val() {
 
         if (BMIToolTipOn === 1)
         {
-            //$("#BMI").tooltip("show");
+            $("#BMI").tooltip("show");
             $("#BMI").removeClass("valid").addClass("invalid");
             $("#myForm input").prop("disabled",true);
             $("#myForm button").prop("disabled",true);
@@ -746,7 +746,7 @@ function BMI_Val() {
     }
     else
     {
-        //$("#BMI").tooltip("hide");
+        $("#BMI").tooltip("hide");
         $("#BMI").removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
