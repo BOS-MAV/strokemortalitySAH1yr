@@ -51,7 +51,7 @@ $(document).ready(function () {
         console.log(avgLabs["malewhite1"].measure[measureEnum.AVGSYS]);
     });
     
-   /* $("#txtAge").tooltip({title: "Please enter an age between 20 and 79", placement: "bottom", trigger: "manual"});
+    $("#txtAge").tooltip({title: "Please enter an age between 20 and 79", placement: "bottom", trigger: "manual"});
     $("#sexMark").tooltip({title: "Please choose either Male or Female", placement: "bottom", trigger: "manual"});
     $("#raceMark").tooltip({title: "Please choose White, African American or Other", placement: "bottom", trigger: "manual"});
     $("#ethMark").tooltip({title: "Please choose not Hispanic/Latino or Hispanic/Latino", placement: "bottom", trigger: "manual"});
@@ -66,7 +66,7 @@ $(document).ready(function () {
     $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG, m or M if you do not have a value", placement: "right", trigger: "manual"});
     $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#creat").tooltip({title: "Please enter creatinine level between 0.59 and 1.39 mg/dL, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
-    $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60, m or M if you do not have a value", placement: "bottom", trigger: "manual"});*/
+    $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
 
     $('#sub').on('click', function (event) {
         var isvalidate = $("#myForm")[0].checkValidity();
