@@ -230,6 +230,41 @@ $(document).ready(function () {
     }
 }
     });
+    $('#BP_Sys').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (bpSys_Val()) {
+                $("#BP_Dia").focus().select();
+            }
+        }
+    });
+
+    $('#BP_Dia').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (bpDia_Val()) {
+                $("#TotChol").focus().select();
+            }
+        }
+    });
+
+    $('#TotChol').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (totChol_Val()) {
+                $("#creat").focus().select();
+            }
+        }
+    });
+
+    $('#creat').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (creat_Val()) {
+                $("#BMI").focus().select();
+            }
+        }
+    });
     $("#txtAge").blur(function () {
           if (txtAge_Val())
           {
