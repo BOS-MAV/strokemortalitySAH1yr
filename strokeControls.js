@@ -1,3 +1,12 @@
+/* Program Title: strokeControl.js
+ * Author: John Russo
+ * Date: April 2025
+ * 
+ * Description: This program controls all data entry and navigation for the stroke 1 yr SAH
+ * 
+ */
+// declare tooltip variables
+
 var txtAgeToolTipOn = 1;
 var txtHospToolTipOn = 1;
 var BP_SysToolTipOn = 1;
@@ -6,6 +15,7 @@ var totCholToolTipOn = 1;
 var creatToolTipOn = 1;
 var BMIToolTipOn = 1;
 
+/*function to fix problem with digits - i.e. user enters 1..2 */
 function enforceOneDigitTwoDecimal(input) {
     input = input.replace("/[^\d.]/g", '');
     const parts = input.split('.');
@@ -36,6 +46,7 @@ $('.colors input[type=radio]').on('change', function () {
 $("input:radio[name='thename']").each(function (i) {
     this.checked = false;
 });
+
 $(document).ready(function () {
     /*$('[data-toggle="tooltip"]').tooltip({
         trigger: 'focus', // or 'hover' or 'manual' as needed
@@ -43,14 +54,19 @@ $(document).ready(function () {
     });*/
 
     //$("#txtAge").focus().select();
+    //set focus on txtAge
     setTimeout(function () {
         $("#txtAge").focus().select();
     }, 200);
+    // loads json array of missing values
+
     loadAvgArray().then(() => {
         // Now avgLabs is ready to use
         console.log(avgLabs["malewhite1"].measure[measureEnum.AVGSYS]);
     });
     
+    //create tooltips
+
     $("#txtAge").tooltip({title: "Please enter an age between 20 and 79", placement: "bottom", trigger: "manual"});
     $("#sexMark").tooltip({title: "Please choose either Male or Female", placement: "bottom", trigger: "manual"});
     $("#raceMark").tooltip({title: "Please choose White, African American or Other", placement: "bottom", trigger: "manual"});
@@ -65,11 +81,14 @@ $(document).ready(function () {
     $("#BP_Sys").tooltip({title: "Please enter a systolic blood pressure between 80 and 300 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
     $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
     $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
-    $("#creat").tooltip({title: "Please enter creatinine level between 0.59 and 1.39 mg/dL, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
-    $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60, m or M if you do not have a value", placement: "bottom", trigger: "manual"});
+    $("#creat").tooltip({title: "Please enter creatinine level between 0.59 and 1.39 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
+    $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60,leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
+
+    //submit onclick handler
 
     $('#sub').on('click', function (event) {
         var isvalidate = $("#myForm")[0].checkValidity();
+        //if the form is valid and all text fields validate then proceed with message
         if ((isvalidate) && txtAge_Val() && txtHosp_Val() && BP_Sys_Val() && BP_Dia_Val() && totChol_Val() && creat_Val() && BMI_Val()) {
             event.preventDefault();
             var risk_res = [];
@@ -81,6 +100,7 @@ $(document).ready(function () {
         }
         else
         {
+            //find out where invalid value is or unchecked button
             
             if (txtAge_Val())
             {
@@ -93,7 +113,7 @@ $(document).ready(function () {
                 }
                 else
                 {
-                   // $("#sexMark").tooltip("hide");
+                    $("#sexMark").tooltip("hide");
                     if (($("input[name = 'Race']:checked").val() != 'White') && ($("input[name = 'Race']:checked").val() != 'AfrAm')
                             && ($("input[name = 'Race']:checked").val() != 'Hisp') && ($("input[name = 'Race']:checked").val() != 'Other'))
                     {
@@ -168,56 +188,55 @@ $(document).ready(function () {
                                                               
                                                         }
                                                         else 
-                                                        {
-                                                            $("#BP_Sys").focus().select();
                                                         
-                                                        if (!(BP_Sys_Val()) || $.trim($("BP_Sys").html())=='')
+                                                        if (!(BP_Sys_Val()))
                                                         {
                                                             $("#BP_Sys").tooltip("show");
                                                             $("#BP_Sys").focus();
                                                         }
-                                                    else
-                                                    {
-                                                        $("#BP_Sys").tooltip("hide");
-                                                        BP_SysToolTipOn = 1;
-                                                        if (!(BP_Dia_Val()))
-                                                        {
-                                                            $("#BP_Dia").tooltip("show");
-                                                            $("#BP_Dia").focus();
-                                                        }
                                                         else
                                                         {
-                                                            $("#BP_Dia").tooltip("hide");
-                                                            BP_DiaToolTipOn = 1;
-                                                            if (!(totChol_Val()))
-                                                                {
-                                                                $("#totChol").tooltip("show");
-                                                                $("#totChol").focus();
-                                                                }
+                                                            $("#BP_Sys").tooltip("hide");
+                                                            BP_SysToolTipOn = 1;
+                                                            if (!(BP_Dia_Val()))
+                                                            {
+                                                                $("#BP_Dia").tooltip("show");
+                                                                $("#BP_Dia").focus();
+                                                            }
                                                             else
                                                             {
-                                                                $("#totChol").tooltip("hide");
-                                                                totCholToolTipOn = 1;
-                                                                if (!(HDL_Val()))
+                                                                $("#BP_Dia").tooltip("hide");
+                                                                BP_DiaToolTipOn = 1;
+                                                                if (!(totChol_Val()))
                                                                 {
-                                                                    $("#creat").tooltip("show");
-                                                                    $("#creat").focus().select();
-                                                                }
-                                                            else
-                                                            {
-                                                                $("#creat").tooltip("hide");
-                                                                creatToolTipOn  = 1;
-                                                                if (!(BMI_Val()))
-                                                                {       
-                                                                    $("#BMI").tooltip("show");
-                                                                    $("#BMI").focus().select();
+                                                                    $("#totChol").tooltip("show");
+                                                                    $("#totChol").focus();
                                                                 }
                                                                 else
                                                                 {
-                                                                    $("#BMIL").tooltip("hide");
-                                                                    BMIToolTipOn =1;
-                                                                }
-                                                            }                                                }
+                                                                    $("#totChol").tooltip("hide");
+                                                                    totCholToolTipOn = 1;
+                                                                    if (!(creat_Val()))
+                                                                    {
+                                                                        $("#creat").tooltip("show");
+                                                                        $("#creat").focus().select();
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        $("#creat").tooltip("hide");
+                                                                        creatToolTipOn  = 1;
+                                                                        if (!(BMI_Val()))
+                                                                        {       
+                                                                            $("#BMI").tooltip("show");
+                                                                            $("#BMI").focus().select();
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            $("#BMIL").tooltip("hide");
+                                                                            BMIToolTipOn =1;
+                                                                        }
+                                                            }                                                
+                                                        }
                                                         }
                                                     }
                                                 }
@@ -231,7 +250,6 @@ $(document).ready(function () {
         }
     }
 }
-        }
     });
     $('#BP_Sys').on('keydown', function (e) {
         if (e.key === 'Enter') {
@@ -525,10 +543,10 @@ $("#ethn").change(function (){
              $("#priorHFYGlyph").hide();
              $("#priorHFMark").removeClass("btn-selected");
          }
-        $("#BP_Sys").focus().select();
-        /*setTimeout(function() {
+        //$("#BP_Sys").focus().select();
+        setTimeout(function() {
             $('#BP_Sys').focus().select();
-        }, 100);*/
+        }, 100);
   
      });
     $("#BP_Sys").blur(function () {
@@ -739,7 +757,7 @@ function creat_Val() {
     if (enforceOneDigitTwoDecimal(input.val()) != input.val())
     {
         $("#creat").val(enforceOneDigitTwoDecimal(input.val()));
-        $("#creat").focus();
+        $("#creat").focus().select();
         /*if (creatToolTipOn === 1)
             {
                 $("#creat").tooltip("show");
@@ -764,7 +782,7 @@ function creat_Val() {
                 $("#myForm input").prop("disabled",true);
                 $("#myForm button").prop("disabled",true);
                 $("#creat").prop("disabled",false); 
-                $("#creat").focus();
+                $("#creat").focus().select();
                 creatToolTipOn = 0;            
             }
             return false;
