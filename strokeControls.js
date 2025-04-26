@@ -14,6 +14,15 @@ var BP_DiaToolTipOn = 1;
 var totCholToolTipOn = 1;
 var creatToolTipOn = 1;
 var BMIToolTipOn = 1;
+var sexToolTipOn = 1;
+var raceToolTipOn = 1;
+var ethTootTipOn = 1;
+var dementiaToolTipOn = 1;
+var hyperToolTipOn = 1;
+var statinToolTipOn = 1;
+var priorKidToolTipOn = 1;
+var priorHFToolTipOn = 1;
+
 
 /*function to fix problem with digits - i.e. user enters 1..2 */
 function enforceOneDigitTwoDecimal(input) {
@@ -70,26 +79,77 @@ $(document).ready(function () {
     $("#txtAge").tooltip({title: "Please enter an age between 20 and 79", placement: "bottom", trigger: "manual"});
     $("#sexMark").tooltip({title: "Please choose either Male or Female", placement: "bottom", trigger: "manual"});
     $("#raceMark").tooltip({title: "Please choose White, African American or Other", placement: "bottom", trigger: "manual"});
-    $("#ethMark").tooltip({title: "Please choose not Hispanic/Latino or Hispanic/Latino", placement: "bottom", trigger: "manual"});
+    $("#ethnMark").tooltip({title: "Please choose not Hispanic/Latino or Hispanic/Latino", placement: "bottom", trigger: "manual"});
     $("#txtHosp").tooltip({title: "Please enter a value between 1 and 365", placement: "bottom", trigger: "manual"});
     $("#diabMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
-    $("#dementiaMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger:"manual"});
+    $("#dementMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger:"manual"});
     $("#hyperMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger:"manual"});
     $("#statinMark").tooltip({title: "Please choose either yes or no",placement:"bottom", trigger:"manual"});
-    $("#priorKidMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
-    $("#priorHFMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
+    $("#priorKid").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
+    $("#priorHF").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
+    $("#afibMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger: "manual"});
     $("#BP_Sys").tooltip({title: "Please enter a systolic blood pressure between 80 and 300 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
     $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
     $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#creat").tooltip({title: "Please enter creatinine level between 0.59 and 1.39 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60,leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
+    function ethnicity_Val() {
+        return ($("input[name='Ethnicity']:checked").val() === 'nhisp' || $("input[name='Ethnicity']:checked").val() === 'hisp');
+    }
+    function sex_Val() {
+        return ($("input[name='Sex']:checked").val() === 'Male' || $("input[name='Sex']:checked").val() === 'Female');
+    }
+    function race_Val() {
+        const race = $("input[name='Race']:checked").val();
+        return (race === 'White' || race === 'Black' || race === 'Hisp' || race === 'Other');
+    }
+    function diabetes_Val() {
+        return ($("input[name='Diabetes']:checked").val() === 'Yes' || $("input[name='Diabetes']:checked").val() === 'No');
+    }
+    function dementia_Val() {
+        return ($("input[name='Dementia']:checked").val() === 'Yes' || $("input[name='Dementia']:checked").val() === 'No');
+    }
+    function hypertension_Val() {
+        return ($("input[name='Hypertension']:checked").val() === 'Yes' || $("input[name='Hypertension']:checked").val() === 'No');
+    }
+    function statin_Val() {
+        return ($("input[name='Statin']:checked").val() === 'Yes' || $("input[name='Statin']:checked").val() === 'No');
+    }
+    function afib_Val() {
+        return ($("input[name='afib']:checked").val() === 'Yes' || $("input[name='afib']:checked").val() === 'No');
+    }
+    function priorKid_Val() {
+        return ($("input[name='priorKid']:checked").val() === 'Yes' || $("input[name='priorKid']:checked").val() === 'No');
+    }
+    function priorHF_Val() {
+        return ($("input[name='priorHF']:checked").val() === 'Yes' || $("input[name='priorHF']:checked").val() === 'No');
+    }
 
     //submit onclick handler
 
     $('#sub').on('click', function (event) {
         var isvalidate = $("#myForm")[0].checkValidity();
         //if the form is valid and all text fields validate then proceed with message
-        if ((isvalidate) && txtAge_Val() && txtHosp_Val() && BP_Sys_Val() && BP_Dia_Val() && totChol_Val() && creat_Val() && BMI_Val()) {
+        //if ((isvalidate) && txtAge_Val() && txtHosp_Val() && BP_Sys_Val() && BP_Dia_Val() && totChol_Val() && creat_Val() && BMI_Val()) {
+            if (isvalidate &&
+                txtAge_Val() &&
+                sex_Val() &&
+                race_Val() &&
+                ethnicity_Val() &&
+                txtHosp_Val() &&
+                diabetes_Val() &&
+                dementia_Val() &&
+                hypertension_Val() &&
+                statin_Val() &&
+                afib_Val() &&
+                priorKid_Val() &&
+                priorHF_Val() &&
+                BP_Sys_Val() &&
+                BP_Dia_Val() &&
+                totChol_Val() &&
+                creat_Val() &&
+                BMI_Val()) 
+                {
             event.preventDefault();
             var risk_res = [];
             risk_res = calc_risk();
@@ -114,7 +174,7 @@ $(document).ready(function () {
                 else
                 {
                     $("#sexMark").tooltip("hide");
-                    if (($("input[name = 'Race']:checked").val() != 'White') && ($("input[name = 'Race']:checked").val() != 'AfrAm')
+                    if (($("input[name = 'Race']:checked").val() != 'White') && ($("input[name = 'Race']:checked").val() != 'Black')
                             && ($("input[name = 'Race']:checked").val() != 'Hisp') && ($("input[name = 'Race']:checked").val() != 'Other'))
                     {
                         $("#raceMark").tooltip("show");
@@ -123,7 +183,8 @@ $(document).ready(function () {
                     else
                     {
                         $("#raceMark").tooltip("hide");
-                        if (($("input[name = 'Ethnicity']:checked").val() !== 'Yes') && ($("input[name = 'Ethnicity']:checked").val() != 'No'))
+                        console.log($("input[name = 'Ethnicity']:checked").val());
+                        if (($("input[name = 'Ethnicity']:checked").val() != 'nhisp') && ($("input[name = 'Ethnicity']:checked").val() != 'hisp'))
                             {
                                $("#ethnMark").tooltip("show");
                                $("#ethn").focus();
@@ -131,22 +192,28 @@ $(document).ready(function () {
                         else
                             {
                                 $("#ethnMark").tooltip("hide");
+                                if (txtHosp_Val())
+                                
+                                    
+                                
                                 if (($("input[name = 'Diabetes']:checked").val() !== 'Yes') && ($("input[name = 'Diabetes']:checked").val() != 'No'))
                                 {
                                      $("#diabMark").tooltip("show");
                                      $("#diab").focus();
-                                }
+                                    }
                                 else
                                 {
                                     $("#diabMark").tooltip("hide");
-                                    if (($("input[name = 'dementia']:checked").val() !== 'Yes') && ($("input[name = 'dementia']:checked").val() !== 'No'))
+                               
+                                    if (($("input[name = 'Dementia']:checked").val() !== 'Yes') && ($("input[name = 'Dementia']:checked").val() !== 'No'))
                                     {
-                                        $("#dementiaMark").tooltip("show");
-                                        $("#dementia").focus();
+                                        console.log($("input[name = 'Dementia']:checked").val());
+                                        $("#dementMark").tooltip("show");
+                                        $("#dementia").focus().select();
                                     }
                                     else
                                     {
-                                       $("#dementiaMark").tooltip("hide");
+                                       $("#dementMark").tooltip("hide");
                                         if (($("input[name = 'Hypertension']:checked").val() !== 'Yes') && ($("input[name = 'Hypertension']:checked").val() !== 'No'))
                                         {
                                         $("#hyperMark").tooltip("show");
@@ -429,7 +496,7 @@ $("#ethn").change(function (){
             $("#diabYGlyph").hide();
             $("#diabMark").removeClass("btn-selected");
         }
-        $("#dementia").focus();
+        $("#Dementia").focus();
     });
     $("input[name='Dementia']").change(function () {
        $("#dementMark").tooltip("hide");
