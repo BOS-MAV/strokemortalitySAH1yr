@@ -1,7 +1,7 @@
 var txtAgeToolTipOn = 1;
 var txtHospToolTipOn = 1;
-var bpSysToolTipOn = 1;
-var bpDiaToolTipOn = 1;
+var BP_SysToolTipOn = 1;
+var BP_DiaToolTipOn = 1;
 var totCholToolTipOn = 1;
 var creatToolTipOn = 1;
 var BMIToolTipOn = 1;
@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     $('#sub').on('click', function (event) {
         var isvalidate = $("#myForm")[0].checkValidity();
-        if ((isvalidate) && txtAge_Val() && txtHosp_Val() && bpSys_Val() && bpDia_Val() && totChol_Val() && creat_Val() && BMI_Val()) {
+        if ((isvalidate) && txtAge_Val() && txtHosp_Val() && BP_Sys_Val() && BP_Dia_Val() && totChol_Val() && creat_Val() && BMI_Val()) {
             event.preventDefault();
             var risk_res = [];
             risk_res = calc_risk();
@@ -167,26 +167,28 @@ $(document).ready(function () {
                                                             $("#priorHF").focus();
                                                               
                                                         }
-                                                    
-                                                    else
-                                                        if (!(bpSys_Val()))
+                                                        else 
                                                         {
-                                                            $("#bpSys").tooltip("show");
-                                                            $("#bpSys").focus();
+                                                            $("#BP_Sys").focus().select();
+                                                        
+                                                        if (!(BP_Sys_Val()) || $.trim($("BP_Sys").html())=='')
+                                                        {
+                                                            $("#BP_Sys").tooltip("show");
+                                                            $("#BP_Sys").focus();
                                                         }
                                                     else
                                                     {
-                                                        $("#bpSys").tooltip("hide");
-                                                        bpSysToolTipOn = 1;
-                                                        if (!(bpDia_Val()))
+                                                        $("#BP_Sys").tooltip("hide");
+                                                        BP_SysToolTipOn = 1;
+                                                        if (!(BP_Dia_Val()))
                                                         {
-                                                            $("#bpDia").tooltip("show");
-                                                            $("#bpDia").focus();
+                                                            $("#BP_Dia").tooltip("show");
+                                                            $("#BP_Dia").focus();
                                                         }
                                                         else
                                                         {
-                                                            $("#bpDia").tooltip("hide");
-                                                            bpDiaToolTipOn = 1;
+                                                            $("#BP_Dia").tooltip("hide");
+                                                            BP_DiaToolTipOn = 1;
                                                             if (!(totChol_Val()))
                                                                 {
                                                                 $("#totChol").tooltip("show");
@@ -229,11 +231,12 @@ $(document).ready(function () {
         }
     }
 }
+        }
     });
     $('#BP_Sys').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (bpSys_Val()) {
+            if (BP_Sys_Val()) {
                 $("#BP_Dia").focus().select();
             }
         }
@@ -242,7 +245,7 @@ $(document).ready(function () {
     $('#BP_Dia').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (bpDia_Val()) {
+            if (BP_Dia_Val()) {
                 $("#TotChol").focus().select();
             }
         }
@@ -269,6 +272,7 @@ $(document).ready(function () {
           if (txtAge_Val())
           {
             txtAgeToolTipOn = 1;
+            $("#sex").focus().select();
           }
     });
 
@@ -279,16 +283,16 @@ $(document).ready(function () {
         }
   });
   $("#BP_Sys").blur(function () {
-    if (bpSys_Val())
+    if (BP_Sys_Val())
     {
-        bpSysToolTipOn = 1;
+        BP_SysToolTipOn = 1;
     }
 });
 
 $("#BP_Dia").blur(function () {
-    if (bpDia_Val())
+    if (BP_Dia_Val())
     {
-        bpDiaToolTipOn = 1;
+        BP_DiaToolTipOn = 1;
     }
 });
 
@@ -309,9 +313,15 @@ $("#creat").blur(function () {
 $("#BMI").blur(function () {
     if (BMI_Val())
     {
-        BMIToolTipOn = 1;;
+        BMIToolTipOn = 1;
     }
 });
+
+$("#ethn").change(function (){
+    
+    $("#txtHosp").focus().select();
+    
+})
 
 
     $("input[name='Sex']").change(function () {
@@ -522,36 +532,44 @@ $("#BMI").blur(function () {
   
      });
     $("#BP_Sys").blur(function () {
-        if (bpSys_Val())
+        if (BP_Sys_Val())
         {
-            bpSysToolTipOn = 1;
+            BP_SysToolTipOn = 1;
         }
     });
-    $("#BP_Sys").change(function () {
+   /* $("#BP_Sys").change(function () {
      
-        if (bpSys_Val())
+        if (BP_Sys_Val())
         {
             setTimeout(function () {
                 $("#BP_Dia").focus().select();
             }, 100);
-            bpSyslToolTipOn = 1;
+            BP_SysToolTipOn = 1;
+        }
+    });*/
+    $("#BP_Sys").on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (BP_Sys_Val()) {
+                $("#BP_Dia").focus().select();
+            }
         }
     });
     $("#BP_Dia").blur(function () {
        
-       if (bpDia_Val())
+       if (BP_Dia_Val())
        {
-        bpDialToolTipOn = 1;
+        BP_DiaToolTipOn = 1;
        }
     });
     $("#BP_Dia").change(function () {
      
-        if (bpDia_Val())
+        if (BP_Dia_Val())
         {
             setTimeout(function () {
                 $("#TotChol").focus().select();
             }, 100);
-            bpDialToolTipOn = 1;
+            BP_DiaToolTipOn = 1;
         }
     });
     $("#TotChol").blur(function () {
@@ -628,20 +646,21 @@ function txtHosp_Val() {
         return true;
     }
 }
-function bpSys_Val() {
+function BP_Sys_Val() {
     var input = $("#BP_Sys");
 
     if (parseInt(input.val()) < 80 || parseInt(input.val()) > 300 )
     {
 
-        if (bpSysToolTipOn ===1)
+        if (BP_SysToolTipOn ===1)
         {
             $("#BP_Sys").tooltip("show");
             $("#BP_Sys").removeClass("valid").addClass("invalid");
             $("#myForm input").prop("disabled",true);
             $("#myForm button").prop("disabled",true);
-            $("#BP_Sys").prop("disabled",false);
-            $("#BP_Sys").focus();
+           /* $("#BP_Sys").prop("disabled",false);
+            $("#BP_Sys").focus();*/
+            input.prop("disabled", false).focus();
             bySysToolTipOn = 0;
         }
         return false;
@@ -652,18 +671,18 @@ function bpSys_Val() {
         $("#BP_Sys").removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
-        $("#BP_Dia").focus();
+        $("#BP_Dia").focus().select();
         return true;
     }
 }
 
-function bpDia_Val() {
+function BP_Dia_Val() {
     var input = $("#BP_Dia");
 
     if (parseInt(input.val()) < 50 || parseInt(input.val()) > 180 )
     {
 
-        if (bpDiaToolTipOn ===1)
+        if (BP_DiaToolTipOn ===1)
         {
             $("#BP_Dia").tooltip("show");
             $("#BP_Dia").removeClass("valid").addClass("invalid");
@@ -671,7 +690,7 @@ function bpDia_Val() {
             $("#myForm button").prop("disabled",true);
             $("#BP_Dia").prop("disabled",false);
             $("#BP_Dia").focus();
-            bpDiaToolTipOn = 0;
+            BP_DiaToolTipOn = 0;
         }
         return false;
     }
