@@ -193,7 +193,7 @@ $(document).ready(function () {
                             {
                                 $("#ethnMark").tooltip("hide");
                                 if (txtHosp_Val())
-                                
+                                {
                                     
                                 
                                 if (($("input[name = 'Diabetes']:checked").val() !== 'Yes') && ($("input[name = 'Diabetes']:checked").val() != 'No'))
@@ -247,7 +247,7 @@ $(document).ready(function () {
                                                     }
                                                     else
                                                     {
-                                                        $("priorKid").tooltip("hide");
+                                                        $("#priorKid").tooltip("hide");
                                                         if (($("input[name= 'priorHF']:checked").val() !== 'Yes') && ($("input[name= 'priorHF']:checked").val() !== 'No'))
                                                         {
                                                             $("#priorHF").tooltip("show");
@@ -255,7 +255,7 @@ $(document).ready(function () {
                                                               
                                                         }
                                                         else 
-                                                        
+                                                        $("#priorHF").tooltip("hide");
                                                         if (!(BP_Sys_Val()))
                                                         {
                                                             $("#BP_Sys").tooltip("show");
@@ -317,6 +317,7 @@ $(document).ready(function () {
         }
     }
 }
+        }
     });
     $('#BP_Sys').on('keydown', function (e) {
         if (e.key === 'Enter') {
@@ -361,7 +362,7 @@ $(document).ready(function () {
           }
     });
 
-    $("#txtHosp").blur(function () {
+    $("#txtHosp").change(function () {
         if (txtHosp_Val())
         {
           txtHospToolTipOn = 1;
@@ -572,10 +573,10 @@ $("#ethn").change(function (){
              $("#afibYGlyph").hide();
              $("#afibMark").removeClass("btn-selected");
          }
-        $("#priorKid").focus();
+        $("#priorKid").focus().select();
      });
      $("input[name='priorKid']").change(function () {
-        $("#priorKidMark").tooltip("hide");
+        $("#priorKid").tooltip("hide");
         if ($("input[name='priorKid']:checked").val()==="Yes")
          {
              $("#priorKidMark").addClass("btn-selected");
@@ -594,7 +595,7 @@ $("#ethn").change(function (){
         $("#priorHF").focus();
      });
      $("input[name='priorHF']").change(function () {
-        $("#priorHFMark").tooltip("hide");
+        $("#priorHF").tooltip("hide");
         if ($("input[name='priorHF']:checked").val()==="Yes")
          {
              $("#priorHFMark").addClass("btn-selected");
@@ -610,10 +611,10 @@ $("#ethn").change(function (){
              $("#priorHFYGlyph").hide();
              $("#priorHFMark").removeClass("btn-selected");
          }
-        //$("#BP_Sys").focus().select();
-        setTimeout(function() {
+        $("#BP_Sys").focus().select();
+       /* setTimeout(function() {
             $('#BP_Sys').focus().select();
-        }, 100);
+        }, 100);*/
   
      });
     $("#BP_Sys").blur(function () {
