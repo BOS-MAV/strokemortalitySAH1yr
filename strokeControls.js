@@ -836,7 +836,7 @@ function creat_Val() {
     if (enforceOneDigitTwoDecimal(input.val()) != input.val())
     {
         $("#creat").val(enforceOneDigitTwoDecimal(input.val()));
-        $("#creat").focus().select();
+        $("#BMI").focus().select();
         /*if (creatToolTipOn === 1)
             {
                 $("#creat").tooltip("show");
