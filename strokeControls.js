@@ -663,6 +663,8 @@ $("#ethn").change(function (){
             }, 100);
             BP_DiaToolTipOn = 1;
         }
+        else 
+            $("BP_Dia").focus().select();
     });
     $("#TotChol").blur(function () {
        if (totChol_Val())
