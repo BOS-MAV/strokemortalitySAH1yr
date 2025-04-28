@@ -819,7 +819,7 @@ function BP_Dia_Val() {
 
 function totChol_Val() {
     var input = $("#TotChol");
-    if (input.val() === '' && totCholFirst)
+    if (input.val() === '' && totcholFirst)
     {
         totcholFirst = false;
         return false;
@@ -853,7 +853,7 @@ function totChol_Val() {
 
 function creat_Val() {
     var input = $("#creat");
-    if (input.val() === '' && creaFirst)
+    if (input.val() === '' && creatFirst)
     {
         creatFirst = false;
         return false;
