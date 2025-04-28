@@ -49,7 +49,23 @@ function enforceOneDigitTwoDecimal(input) {
   
     return '';
   }
-
+//similar function except for two digit (like BMI)
+function enforceTwoDigitTwoDecimal(input) {
+    input = input.replace("/[^\d.]/g", '');
+    const parts = input.split('.');
+    if (parts.length > 3) {
+      input = parts[0] + parts[1]+ '.' + parts.slice(1).join('').replace(/\./g, '');
+    }
+  
+    const match = input.match(/^(\d{2})?(?:\.(\d{0,2})?)?/);
+    if (match) {
+      const before = match[1] || '';
+      const after = match[2] || '';
+      return before + (after !== '' ? '.' + after : '');
+    }
+  
+    return '';
+  }
 $(function () {
     $(".controlgroup").controlgroup();
     $(".controlgroup-vertical").controlgroup({
@@ -156,7 +172,7 @@ $(document).ready(function () {
                 BP_Dia_Val(true) &&
                 totChol_Val(true) &&
                 creat_Val(true) &&
-                BMI_Val()) 
+                BMI_Val(true)) 
                 {
             event.preventDefault();
             var risk_res = [];
@@ -300,7 +316,7 @@ $(document).ready(function () {
                                                                     {
                                                                         $("#creat").tooltip("hide");
                                                                         creatToolTipOn  = 1;
-                                                                        if (!(BMI_Val()))
+                                                                        if (!(BMI_Val(true)))
                                                                         {       
                                                                             $("#BMI").tooltip("show");
                                                                             $("#BMI").focus().select();
@@ -405,7 +421,7 @@ $("#creat").blur(function () {
 });
 
 $("#BMI").blur(function () {
-    if (BMI_Val())
+    if (BMI_Val(false))
     {
         BMIToolTipOn = 1;
     }
@@ -876,6 +892,7 @@ function creat_Val(finalChk) {
     }
     else
     {
+        // fix?
         if (input.val() !== "" && (parseFloat(input.val()) < 0.59 || parseFloat(input.val()) > 1.39  ))
         {
 
@@ -902,35 +919,39 @@ function creat_Val(finalChk) {
         }
     }
 }
-function BMI_Val() {
+function BMI_Val(finalChk) {
     var input = $("#BMI");
-    if (BMIFirst)
-    {
-        BMIFirst = false;
-        return true;
-    }
-
-    if (parseFloat(input.val()) < 12 || parseFloat(input.val()) > 49 || input.val() === "")
-    {
-
-        if (BMIToolTipOn === 1)
+    if (input.val() === ''  && !finalChk)
         {
-            $("#BMI").tooltip("show");
-            $("#BMI").removeClass("valid").addClass("invalid");
-            $("#myForm input").prop("disabled",true);
-            $("#myForm button").prop("disabled",true);
-            $("#BMI").prop("disabled",false); 
-            $("#BMI").focus();
-            BMIToolTipOn = 0;            
+            return false;
         }
-        return false;
-    }
+    if (enforceTwoDigitTwoDecimal(input.val()) != input.val())
+        {
+            $("#BMI").val(enforceTwoDigitTwoDecimal(input.val()));
+        }
     else
     {
-        $("#BMI").tooltip("hide");
-        $("#BMI").removeClass("invalid").addClass("valid");
-        $("#myForm input").prop("disabled",false);
-        $("#myForm button").prop("disabled",false);
-        return true;
+        if (parseFloat(input.val()) < 12 || parseFloat(input.val()) > 49 )
+        {
+            if (BMIToolTipOn === 1)
+            {
+                $("#BMI").tooltip("show");
+                $("#BMI").removeClass("valid").addClass("invalid");
+                $("#myForm input").prop("disabled",true);
+                $("#myForm button").prop("disabled",true);
+                $("#BMI").prop("disabled",false); 
+                $("#BMI").focus();
+                BMIToolTipOn = 0;            
+            }
+            return false;
+        }
+        else
+        {
+            $("#BMI").tooltip("hide");
+            $("#BMI").removeClass("invalid").addClass("valid");
+            $("#myForm input").prop("disabled",false);
+            $("#myForm button").prop("disabled",false);
+            return true;
+        }
     }
 }
