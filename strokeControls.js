@@ -408,7 +408,10 @@ $("#BMI").blur(function () {
 
 $("#ethn").change(function (){
     
-    $("#txtHosp").focus().select();
+    //$("#txtHosp").focus().select();
+    setTimeout(function () {
+        $("#txtHosp").focus().select();
+    }, 100);
     
 })
 
