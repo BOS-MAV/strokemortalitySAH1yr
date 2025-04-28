@@ -25,6 +25,11 @@ var priorHFToolTipOn = 1;
 
 // variables to flag when a field has not been entered into yet
 var txtHospFirst = true;
+var BP_SysFirst = true;
+var BP_DiaFirst = true;
+var totcholFirst = true;
+var creatFirst = true;
+var BMIFirst = true;
 
 
 /*function to fix problem with digits - i.e. user enters 1..2 */
@@ -745,7 +750,10 @@ function txtHosp_Val() {
 }
 function BP_Sys_Val() {
     var input = $("#BP_Sys");
-    if (input.val() === '') {
+
+    if (input.val() === '' && BP_SysFirst) 
+    {
+        BP_SysFirst = false;
         return false;
     }
     if (parseInt(input.val()) < 80 || parseInt(input.val()) > 300 )
@@ -777,7 +785,9 @@ function BP_Sys_Val() {
 
 function BP_Dia_Val() {
     var input = $("#BP_Dia");
-    if (input.val() === '') {
+    if (input.val() === '' && BP_DiaFirst)
+    {
+        BP_DiaFirst = false;
         return false;
     }
 
@@ -809,7 +819,9 @@ function BP_Dia_Val() {
 
 function totChol_Val() {
     var input = $("#TotChol");
-    if (input.val() === '') {
+    if (input.val() === '' && totCholFirst)
+    {
+        totcholFirst = false;
         return false;
     }
 
@@ -841,7 +853,9 @@ function totChol_Val() {
 
 function creat_Val() {
     var input = $("#creat");
-    if (input.val() === '') {
+    if (input.val() === '' && creaFirst)
+    {
+        creatFirst = false;
         return false;
     }
     if (enforceOneDigitTwoDecimal(input.val()) != input.val())
@@ -890,6 +904,11 @@ function creat_Val() {
 }
 function BMI_Val() {
     var input = $("#BMI");
+    if (BMIFirst)
+    {
+        BMIFirst = false;
+        return true;
+    }
 
     if (parseFloat(input.val()) < 12 || parseFloat(input.val()) > 49 || input.val() === "")
     {
