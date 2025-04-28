@@ -23,6 +23,9 @@ var statinToolTipOn = 1;
 var priorKidToolTipOn = 1;
 var priorHFToolTipOn = 1;
 
+// variables to flag when a field has not been entered into yet
+var txtHospFirst = true;
+
 
 /*function to fix problem with digits - i.e. user enters 1..2 */
 function enforceOneDigitTwoDecimal(input) {
@@ -76,7 +79,7 @@ $(document).ready(function () {
     
     //create tooltips
 
-    $("#txtAge").tooltip({title: "Please enter an age between 20 and 79", placement: "bottom", trigger: "manual"});
+    $("#txtAge").tooltip({title: "Please enter an age of 18 or greater", placement: "bottom", trigger: "manual"});
     $("#sexMark").tooltip({title: "Please choose either Male or Female", placement: "bottom", trigger: "manual"});
     $("#raceMark").tooltip({title: "Please choose White, African American or Other", placement: "bottom", trigger: "manual"});
     $("#ethnMark").tooltip({title: "Please choose not Hispanic/Latino or Hispanic/Latino", placement: "bottom", trigger: "manual"});
@@ -362,7 +365,7 @@ $(document).ready(function () {
           }
     });
 
-    $("#txtHosp").change(function () {
+    $("#txtHosp").blur(function () {
         if (txtHosp_Val())
         {
           txtHospToolTipOn = 1;
@@ -478,7 +481,7 @@ $("#ethn").change(function (){
                 $("#nhspGlyph").hide();                 
                 $("#ethnMark").removeClass("btn-selected");
             }
-        $("#Diabetes").focus();
+        $("#txtHosp").focus().select();
     });
     $("input[name='Diabetes']").change(function () {
         $("#diabMark").tooltip("hide");
@@ -681,7 +684,7 @@ $("#ethn").change(function (){
 
 function txtAge_Val() {
         var input = $("#txtAge");
-        if ((parseInt(input.val()) < 20 || parseInt(input.val()) > 79) || (input.val() === ''))
+        if (parseInt(input.val()) < 18 || (input.val() === ''))
         {
             if (txtAgeToolTipOn===1)
             {
@@ -708,7 +711,7 @@ function txtAge_Val() {
 
 function txtHosp_Val() {
     var input = $("#txtHosp");
-    if ((parseInt(input.val()) < 1 || parseInt(input.val()) > 365) || (input.val() === ''))
+    if (((parseInt(input.val()) < 1 || parseInt(input.val()) > 365) || (input.val() === ''))&& !txtHospFirst)
     {
         if (txtHospToolTipOn===1)
         {
@@ -728,7 +731,10 @@ function txtHosp_Val() {
         input.removeClass("invalid").addClass("valid");
         $("#myForm input").prop("disabled",false);
         $("#myForm button").prop("disabled",false);
-        $("#diab").focus();
+        if (!txtHospFirst)
+            $("#diab").focus();
+        else   
+            txtHospFirst = false;
         return true;
     }
 }
