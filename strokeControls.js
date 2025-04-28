@@ -623,13 +623,13 @@ $("#ethn").change(function (){
         }, 100);
   
      });
-    $("#BP_Sys").blur(function () {
+   /* $("#BP_Sys").blur(function () {
         if (BP_Sys_Val())
         {
             BP_SysToolTipOn = 1;
         }
-    });
-   /* $("#BP_Sys").change(function () {
+    });*/
+    $("#BP_Sys").change(function () {
      
         if (BP_Sys_Val())
         {
@@ -638,7 +638,7 @@ $("#ethn").change(function (){
             }, 100);
             BP_SysToolTipOn = 1;
         }
-    });*/
+    });
     $("#BP_Sys").on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
