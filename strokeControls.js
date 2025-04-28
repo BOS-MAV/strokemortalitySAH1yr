@@ -775,6 +775,9 @@ function BP_Sys_Val() {
 
 function BP_Dia_Val() {
     var input = $("#BP_Dia");
+    if (input.val() === '') {
+        return false;
+    }
 
     if (parseInt(input.val()) < 50 || parseInt(input.val()) > 180 )
     {
@@ -804,6 +807,9 @@ function BP_Dia_Val() {
 
 function totChol_Val() {
     var input = $("#TotChol");
+    if (input.val() === '') {
+        return false;
+    }
 
     if (parseInt(input.val()) < -1 || parseInt(input.val()) > 500)
     {
@@ -833,6 +839,9 @@ function totChol_Val() {
 
 function creat_Val() {
     var input = $("#creat");
+    if (input.val() === '') {
+        return false;
+    }
     if (enforceOneDigitTwoDecimal(input.val()) != input.val())
     {
         $("#creat").val(enforceOneDigitTwoDecimal(input.val()));
