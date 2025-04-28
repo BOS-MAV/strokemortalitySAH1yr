@@ -743,7 +743,9 @@ function txtHosp_Val() {
 }
 function BP_Sys_Val() {
     var input = $("#BP_Sys");
-
+    if (input.val() === '') {
+        return false;
+    }
     if (parseInt(input.val()) < 80 || parseInt(input.val()) > 300 )
     {
 
