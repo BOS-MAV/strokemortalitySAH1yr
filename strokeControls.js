@@ -264,7 +264,7 @@ $(document).ready(function () {
                                                         }
                                                         else 
                                                         $("#priorHF").tooltip("hide");
-                                                        if (!(BP_Sys_Val()))
+                                                        if (!(BP_Sys_Val(true)))
                                                         {
                                                             $("#BP_Sys").tooltip("show");
                                                             $("#BP_Sys").focus();
@@ -273,7 +273,7 @@ $(document).ready(function () {
                                                         {
                                                             $("#BP_Sys").tooltip("hide");
                                                             BP_SysToolTipOn = 1;
-                                                            if (!(BP_Dia_Val()))
+                                                            if (!(BP_Dia_Val(true)))
                                                             {
                                                                 $("#BP_Dia").tooltip("show");
                                                                 $("#BP_Dia").focus();
@@ -282,7 +282,7 @@ $(document).ready(function () {
                                                             {
                                                                 $("#BP_Dia").tooltip("hide");
                                                                 BP_DiaToolTipOn = 1;
-                                                                if (!(totChol_Val()))
+                                                                if (!(totChol_Val(true)))
                                                                 {
                                                                     $("#totChol").tooltip("show");
                                                                     $("#totChol").focus();
@@ -291,7 +291,7 @@ $(document).ready(function () {
                                                                 {
                                                                     $("#totChol").tooltip("hide");
                                                                     totCholToolTipOn = 1;
-                                                                    if (!(creat_Val()))
+                                                                    if (!(creat_Val(true)))
                                                                     {
                                                                         $("#creat").tooltip("show");
                                                                         $("#creat").focus().select();
@@ -330,7 +330,7 @@ $(document).ready(function () {
     $('#BP_Sys').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (BP_Sys_Val()) {
+            if (BP_Sys_Val(false)) {
                 $("#BP_Dia").focus().select();
             }
         }
@@ -339,7 +339,7 @@ $(document).ready(function () {
     $('#BP_Dia').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (BP_Dia_Val()) {
+            if (BP_Dia_Val(false)) {
                 $("#TotChol").focus().select();
             }
         }
@@ -348,7 +348,7 @@ $(document).ready(function () {
     $('#TotChol').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (totChol_Val()) {
+            if (totChol_Val(false)) {
                 $("#creat").focus().select();
             }
         }
@@ -357,7 +357,7 @@ $(document).ready(function () {
     $('#creat').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (creat_Val()) {
+            if (creat_Val(false)) {
                 $("#BMI").focus().select();
             }
         }
@@ -377,28 +377,28 @@ $(document).ready(function () {
         }
   });
   $("#BP_Sys").blur(function () {
-    if (BP_Sys_Val())
+    if (BP_Sys_Val(false))
     {
         BP_SysToolTipOn = 1;
     }
 });
 
 $("#BP_Dia").blur(function () {
-    if (BP_Dia_Val())
+    if (BP_Dia_Val(false))
     {
         BP_DiaToolTipOn = 1;
     }
 });
 
 $("#TotChol").blur(function () {
-    if (totChol_Val())
+    if (totChol_Val(false))
     {
         totCholToolTipOn = 1;
     }
 });
 
 $("#creat").blur(function () {
-    if (creat_Val())
+    if (creat_Val(false))
     {
         creatToolTipOn = 1;
     }
@@ -636,7 +636,7 @@ $("#ethn").change(function (){
     });*/
     $("#BP_Sys").change(function () {
      
-        if (BP_Sys_Val())
+        if (BP_Sys_Val(false))
         {
             setTimeout(function () {
                 $("#BP_Dia").focus().select();
@@ -647,21 +647,21 @@ $("#ethn").change(function (){
     $("#BP_Sys").on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (BP_Sys_Val()) {
+            if (BP_Sys_Val(false)) {
                 $("#BP_Dia").focus().select();
             }
         }
     });
     $("#BP_Dia").blur(function () {
        
-       if (BP_Dia_Val())
+       if (BP_Dia_Val(false))
        {
         BP_DiaToolTipOn = 1;
        }
     });
     $("#BP_Dia").change(function () {
      
-        if (BP_Dia_Val())
+        if (BP_Dia_Val(false))
         {
             setTimeout(function () {
                 $("#TotChol").focus().select();
@@ -672,7 +672,7 @@ $("#ethn").change(function (){
             $("BP_Dia").focus().select();
     });
     $("#TotChol").blur(function () {
-       if (totChol_Val())
+       if (totChol_Val(false))
        {
         setTimeout(function () {
             $("#creat").focus().select();
@@ -681,7 +681,7 @@ $("#ethn").change(function (){
        }
     });
     $("#TotChol").change(function () {
-        if (totChol_Val())
+        if (totChol_Val(false))
         {
             setTimeout(function () {
                 $("#creat").focus().select();
@@ -748,10 +748,10 @@ function txtHosp_Val() {
         return true;
     }
 }
-function BP_Sys_Val() {
+function BP_Sys_Val(finalChk) {
     var input = $("#BP_Sys");
 
-    if (input.val() === '' && BP_SysFirst) 
+    if (input.val() === '' && BP_SysFirst && !finalChk) 
     {
         BP_SysFirst = false;
         return false;
@@ -783,9 +783,9 @@ function BP_Sys_Val() {
     }
 }
 
-function BP_Dia_Val() {
+function BP_Dia_Val(finalChk) {
     var input = $("#BP_Dia");
-    if (input.val() === '' && BP_DiaFirst)
+    if (input.val() === '' && BP_DiaFirst && !finalChk)
     {
         BP_DiaFirst = false;
         return false;
@@ -817,9 +817,9 @@ function BP_Dia_Val() {
     }
 }
 
-function totChol_Val() {
+function totChol_Val(finalChk) {
     var input = $("#TotChol");
-    if (input.val() === '' && totcholFirst)
+    if (input.val() === '' && totcholFirst && !finalChk)
     {
         totcholFirst = false;
         return false;
@@ -851,9 +851,9 @@ function totChol_Val() {
     }
 }
 
-function creat_Val() {
+function creat_Val(finalChk) {
     var input = $("#creat");
-    if (input.val() === '' && creatFirst)
+    if (input.val() === '' && creatFirst && !finalChk)
     {
         creatFirst = false;
         return false;
