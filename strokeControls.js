@@ -152,10 +152,10 @@ $(document).ready(function () {
                 afib_Val() &&
                 priorKid_Val() &&
                 priorHF_Val() &&
-                BP_Sys_Val() &&
-                BP_Dia_Val() &&
-                totChol_Val() &&
-                creat_Val() &&
+                BP_Sys_Val(true) &&
+                BP_Dia_Val(true) &&
+                totChol_Val(true) &&
+                creat_Val(true) &&
                 BMI_Val()) 
                 {
             event.preventDefault();
