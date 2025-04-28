@@ -617,10 +617,10 @@ $("#ethn").change(function (){
              $("#priorHFYGlyph").hide();
              $("#priorHFMark").removeClass("btn-selected");
          }
-        $("#BP_Sys").focus().select();
-       /* setTimeout(function() {
+       // $("#BP_Sys").focus().select();
+        setTimeout(function() {
             $('#BP_Sys').focus().select();
-        }, 100);*/
+        }, 100);
   
      });
     $("#BP_Sys").blur(function () {
