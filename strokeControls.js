@@ -751,7 +751,7 @@ function txtHosp_Val() {
 function BP_Sys_Val(finalChk) {
     var input = $("#BP_Sys");
 
-    if (input.val() === '' && BP_SysFirst && !finalChk) 
+    if (input.val() === ''  && !finalChk) 
     {
         BP_SysFirst = false;
         return false;
@@ -785,7 +785,7 @@ function BP_Sys_Val(finalChk) {
 
 function BP_Dia_Val(finalChk) {
     var input = $("#BP_Dia");
-    if (input.val() === '' && BP_DiaFirst && !finalChk)
+    if (input.val() === ''  && !finalChk)
     {
         BP_DiaFirst = false;
         return false;
@@ -819,7 +819,7 @@ function BP_Dia_Val(finalChk) {
 
 function totChol_Val(finalChk) {
     var input = $("#TotChol");
-    if (input.val() === '' && totcholFirst && !finalChk)
+    if (input.val() === ''  && !finalChk)
     {
         totcholFirst = false;
         return false;
@@ -853,7 +853,7 @@ function totChol_Val(finalChk) {
 
 function creat_Val(finalChk) {
     var input = $("#creat");
-    if (input.val() === '' && creatFirst && !finalChk)
+    if (input.val() === ''  && !finalChk)
     {
         creatFirst = false;
         return false;
