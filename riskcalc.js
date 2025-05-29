@@ -233,9 +233,9 @@ function calc_risk() {
                 console.log(xbeta);
                 console.log(eXbeta);
                 //risk = 1 - Math.pow(0.98731,eXbeta);
-                risk[0] = numberFormat(Math.pow(0.9381234,eXbeta)*100,2);
-                risk[1] = numberFormat(Math.pow(0.900994,eXbeta)*100,2);
-                risk[2] = numberFormat(Math.pow(0.8724128,eXbeta)*100,2);
-                risk[3] = numberFormat(Math.pow(0.8289787,eXbeta)*100,2);
+                risk[0] = numberFormat(Math.pow(0.9381234,eXbeta)*100,0);
+                risk[1] = numberFormat(Math.pow(0.900994,eXbeta)*100,0);
+                risk[2] = numberFormat(Math.pow(0.8724128,eXbeta)*100,0);
+                risk[3] = numberFormat(Math.pow(0.8289787,eXbeta)*100,0);
                 return risk;
                 }   
