@@ -177,10 +177,10 @@ $(document).ready(function () {
             event.preventDefault();
             var risk_res = [];
             risk_res = calc_risk();
-            $('#message').html('0-30 day survival probability = ' + risk_res[0]+
-                "%<br/>0-90 day survival probability = "+risk_res[1]+
-                "%<br/>0-6 month survival probability =  "+risk_res[2]+
-                "%</br>0-1 year survival probability = "+risk_res[3]+"%");
+            $('#message').html('0-30 day &nbsp;&nbsp; survival probability = ' + risk_res[0]+
+                "%<br/>0-90 day &nbsp;&nbsp; survival probability = "+risk_res[1]+
+                "%<br/>&nbsp;0-6 month survival probability =  "+risk_res[2]+
+                "%</br>&nbsp;0-1 year &nbsp;&nbsp;&nbsp; survival probability = "+risk_res[3]+"%");
             //$('#message').html('Results ' + calc_risk()+"%");
             $('#myModal').modal('show');
         }
