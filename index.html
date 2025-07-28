@@ -86,7 +86,7 @@
                             </div>
                         </div>    
                         
-                    </div>
+                 
                     <div class="well well-sm">
                         <legend class = "block-legend">Clinical History</legend>    
                         <div class ="row no-gutters">
@@ -150,7 +150,7 @@
                             <div class ="col-sm-3 col-med-3 col-lg-2">
 
                                 <div class="btn-group colors" data-toggle="buttons" id ="priorKid" >                             
-                                    <label class = "topLabel"><br/><br/>History of chronic kidney disease?</label>
+                                    <label class = "topLabel"><br/>History of chronic kidney disease?</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn btn-primary btn-sm" id = "priorKidMark"> 
                                         <span class = "glyphicon glyphicon-check" id = "priorKidYGlyph" style="display:none"></span>
@@ -177,7 +177,21 @@
                                     </label>
                                 </div>
                             </div>
-
+                                <div class ="col-sm-3 col-med-3 col-lg-3">
+                                <br/>
+                                <div class="btn-group colors" data-toggle="buttons" id ="TBI" >                             
+                                    <label class = "topLabel"><br/>History of traumatic brain injury?</label>
+                                    <div style="clear: both;"></div>
+                                    <label class="btn btn-primary btn-sm" id = "TBIMark"> 
+                                        <span class = "glyphicon glyphicon-check" id = "TBIYGlyph" style="display:none"></span>
+                                        <input type="radio" name="TBI" value="Yes"  required> Yes
+                                    </label>
+                                    <label class="btn btn-primary btn-sm" id = "TBIMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "TBINGlyph" style="display:none"></span>
+                                        <input type="radio" name="TBI" value="No"  required > No
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                      <div class="well well-sm">
@@ -200,7 +214,7 @@
                             </div>
                             <div class ="col-sm-3 col-med-3 col-lg-2">
                                 <div class="btn-group colors" data-toggle="buttons" id ="stat" >
-                                    <label class = "topLabel"><br/><br/>Statin medication?</label>
+                                    <label class = "topLabel"><br/>Statin medication?</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn btn-primary btn-sm" id = "statinMark"> 
                                         <span class = "glyphicon glyphicon-check" id = "statinYGlyph" style="display:none"></span>
@@ -246,16 +260,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class ="col-sm-3 col-med-3 col-lg-3">
-                                <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel1">Creatinine<br/>(mg/dL)</label>
-                                    <div style="clear: both;"></div>
-                                    <label class="btn text-input">
-                                        <input type = "text"  id = "creat" size = "2" maxlength ="4"  oninput="
-                                        this.value = this.value.replace(/[^\d.]/g, '');" autocomplete="off" />
-                                     </label>
-                                </div>
-                            </div>
+                            
                             <div class ="col-sm-3 col-med-3 col-lg-3">
                                 <div class="btn-group" data-toggle="buttons" >
                                     <label class = "topLabel1"><br/>BMI</label>
